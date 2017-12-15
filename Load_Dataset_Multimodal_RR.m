@@ -30,15 +30,15 @@ Band_overlap_MS=load_Band_overlap(sensor,sensor_MS,'MS','MS',place);
 if flag_loaddefaultratio==1, ratio=3; end
 
 %%% Cut ROI
-[hcut,vcut,edge_cut,edge_cut_PAN,Qblocks_size]=load_cut(im_tag,cut_label,sensor,sensor_PAN,'PAN');
+[hcut,vcut,edge_cut,~,Qblocks_size]=load_cut(im_tag,cut_label,sensor,sensor_PAN,'PAN');
 [~,~,~,edge_cut_MS,~]=load_cut(im_tag,cut_label,sensor,sensor_MS,'MS');
 hshift_PAN=0; vshift_PAN=0; hshift_MS=0; vshift_MS=0;
 
 load(['Datasets/',place,'_FR.mat']);
 I_PAN=I_MS_LR;
-I_MS_LR=I_HS_LR(:,:,Bands_to_sharpen);
+I_MS_LR=I_HS_LR;
 
-[I_PAN,edge_cut_MS]=imcrop_custom(I_PAN(:,:,Bands_to_sharpen_MS),...
+[I_PAN,edge_cut_MS]=imcrop_custom(I_PAN,...
     hcut,vcut,ratio_MS,edge_cut_MS+hshift_MS,edge_cut_MS+vshift_MS);
 
 %%% Cut ROI

@@ -20,14 +20,14 @@ Qblocks_size=32;
 if strncmpi(im_tag,'Beijing',7)
     if any(strcmpi(sensor_lq,{'HYP','ALI'}))
         Qblocks_size=27;
-        edge_cut_lq=138;
+        edge_cut_lq=63;
         switch cut_label
             case 'cut2'
                 hcut=68+(1:96); vcut=20+(1:144);      %Full image
             case 'cut3'
                 hcut=128+(1:36); vcut=8+(1:156);
             case 'cut4'
-                hcut=148+(1:126); vcut=-74+(1:288);
+                hcut=1:126; vcut=1:288;
             case 'cut5'
                 hcut=4+(1:156); vcut=4+(1:156);
             otherwise
@@ -41,7 +41,7 @@ if strncmpi(im_tag,'Beijing',7)
         hcut=hcut-edge_cut_lq; vcut=vcut-edge_cut_lq;
     end
     if strcmpi(sensor_hq,'ALI')
-        edge_cut_hq=138*ratio;
+        edge_cut_hq=63*ratio;
     end
 elseif strncmpi(im_tag,'RdJ',3)
     if any(strcmpi(sensor_lq,{'HYP','ALI'}))
@@ -86,13 +86,13 @@ elseif strncmpi(im_tag,'SaoPaulo',8)
 elseif strncmpi(im_tag,'SanFrancisco',8)
     if any(strcmpi(sensor_lq,{'HYP','ALI'}))
         Qblocks_size=27;
-        edge_cut_lq=138;
+        edge_cut_lq=0;
         switch cut_label
             case 'cut2'
                 hcut=29:160; vcut=29:160;
                 % hcut=25:160; vcut=25:160;
             case 'cut3'
-                hcut=22+(1:132); vcut=2+(1:294);
+                hcut=1:132; vcut=1:294;
             otherwise
                 hcut=40+(1:120); vcut=88+(1:72);
         end
@@ -109,18 +109,18 @@ elseif strncmpi(im_tag,'SanFrancisco',8)
         hcut=hcut-edge_cut_lq; vcut=vcut-edge_cut_lq;
     end
     if strcmpi(sensor_hq,'ALI')
-        edge_cut_hq=138*ratio;
+        edge_cut_hq=0;
     end
 elseif strncmpi(im_tag,'Sofia',5) || strncmpi(im_tag,'Sudbury',7)
     Qblocks_size=30;
-    edge_cut_lq=43;
-    edge_cut_hq=43*ratio;
+    edge_cut_lq=60;
+    edge_cut_hq=60*ratio;
     switch cut_label
         case 'cut2'
             if strncmpi(im_tag,'Sofia1GST',9) || strncmpi(im_tag,'Sudbury1GST',11)
                 hcut=22:177; vcut=97:288;
             else
-                hcut=19:174; vcut=97:288;
+                hcut=1:156; vcut=1:192;
             end
         otherwise
             % hcut=1:192; vcut=97:288;   % Square; RR power of 2; black corner
